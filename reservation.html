@@ -4,26 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation</title>
-    <link rel="stylesheet" href="reservation.css">
+    <link rel="stylesheet" href="statics/css/reservation.css">
 </head>
 <body>
-    <div class="navbar">
-        <nav>
-            <p class="logo">Apex Motors</p>
-            <div class="menu-toggle">
-             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Inventory</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-         </div>
-            <p>Book a Test Drive</p>
-        </nav>
-    </div>
+    
     <div class="container"> 
         <div class="reservation-form">
-            <form action="submit_reservation.php" method="POST">
+            <form action="submit_reservation.php" method="POST" class="form-grid">
                 <div class="form-textarea" >
                     <h2>request a private consultation</h2>
                     <p class="form-para">Provide your details below to secure your appointment</p>
@@ -55,7 +42,7 @@
                     <textarea id="comment" class="textarea" placeholder="Tell us about your requirements..."></textarea>
                 </div>
                 <div class="form-btn" >
-                    <button type="submit" value="SUBMIT CONSULTATION REQUEST"></button>
+                    <button type="submit">SUBMIT CONSULTATION REQUEST</button>
                 </div>
             </form>
 
