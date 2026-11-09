@@ -14,7 +14,7 @@ body {
 }
 
 .key-stats {
-  margin-top: 40px;
+  margin-top: 4px;
 }
 
 .key-stats h2 {
@@ -25,24 +25,28 @@ body {
   font-weight: normal;
 }
 
-.stats {
+.stats-list {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
 }
 
-.stats div {
+.stat {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  color: #aaa69f;
 }
 
-.stats span:first-child {
+.stat-number {
   color: #c7a779;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 48px;
+  font-size: clamp(42px, 6vw, 72px);
   line-height: 1;
+}
+
+.stat-label {
+  color: #aaa69f;
+  font-size: 16px;
 }
 
 .about-brand {
@@ -187,7 +191,11 @@ h2{
 }
 
 @media (max-width: 500px) {
-  .stats {
+  .stats-list {
     gap: 20px;
+  }
+
+  .stat-label {
+    font-size: 13px;
   }
 }
