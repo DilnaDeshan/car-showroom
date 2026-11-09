@@ -1,0 +1,445 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 14px;
+    background:
+        radial-gradient(ellipse at 50% 0, rgba(91, 83, 68, 0.13), transparent 55%),
+        #111214;
+    color: #e8e2d6;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.inventory-page {
+    width: min(100%, 1440px);
+    min-height: calc(100vh - 28px);
+    margin: 0 auto;
+    padding: 16px 3.2% 28px;
+    overflow: visible;
+    background: linear-gradient(145deg, #17181a, #111214 70%);
+    border: 1px solid #292a2c;
+    border-radius: 12px;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+}
+
+.inventory-tools {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) repeat(5, minmax(92px, auto));
+    gap: 8px;
+    align-items: center;
+}
+
+.search-control,
+.inventory-tools select,
+.price-filter-toggle {
+    min-width: 0;
+    height: 38px;
+    border: 1px solid #303134;
+    border-radius: 6px;
+    background-color: #222326;
+    color: #d7d1c6;
+}
+
+.search-control {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    color: #92908b;
+}
+
+.search-control:focus-within,
+.inventory-tools select:focus,
+.price-filter-toggle:focus {
+    border-color: #987b50;
+    outline: none;
+}
+
+.search-control input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #eee8dd;
+    font: inherit;
+    font-size: 13px;
+}
+
+.search-control input::placeholder {
+    color: #77777a;
+}
+
+.inventory-tools select {
+    padding: 0 10px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.price-filter {
+    position: relative;
+    min-width: 0;
+}
+
+.price-filter-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.price-filter-toggle i {
+    color: #85827c;
+    font-size: 10px;
+}
+
+.price-filter-panel {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 8px);
+    right: 0;
+    width: min(390px, calc(100vw - 48px));
+    padding: 20px;
+    border: 1px solid #393a3c;
+    border-radius: 12px;
+    background: #1c1d1f;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.price-panel-title {
+    margin: 0 0 16px;
+    color: #eee8dd;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.price-preset-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.price-pill {
+    padding: 8px 12px;
+    border: 1px solid #575044;
+    border-radius: 20px;
+    background: #222326;
+    color: #d7d1c6;
+    font-size: 12px;
+    cursor: pointer;
+    transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.price-pill:hover,
+.price-pill.active {
+    border-color: #b69a6b;
+    background: #393326;
+    color: #d4b989;
+}
+
+.price-inputs-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.price-input-group {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    color: #aaa69d;
+    font-size: 12px;
+}
+
+.price-input-group input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 11px;
+    border: 1px solid #575044;
+    border-radius: 7px;
+    outline: none;
+    background: #222326;
+    color: #eee8dd;
+    font: inherit;
+    font-size: 14px;
+}
+
+.price-input-group input:focus {
+    border-color: #b69a6b;
+}
+
+.price-input-group input::placeholder {
+    color: #77777a;
+}
+
+.price-separator {
+    padding-bottom: 11px;
+    color: #92908b;
+}
+
+.price-error {
+    margin: -6px 0 14px;
+    color: #e29b8f;
+    font-size: 12px;
+}
+
+.price-panel-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #343538;
+}
+
+.price-panel-actions button {
+    min-height: 38px;
+    padding: 0 17px;
+    border: 1px solid #806b4b;
+    border-radius: 6px;
+    background: transparent;
+    color: #c6ad83;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 160ms ease;
+}
+
+.price-panel-actions button:hover {
+    background: #393326;
+}
+
+.price-panel-actions .price-show {
+    min-width: 110px;
+    border-color: #806b4b;
+    background: #806b4b;
+    color: #fff8eb;
+    font-weight: 700;
+}
+
+.price-panel-actions .price-show:hover {
+    background: #9a8058;
+}
+
+.inventory-count {
+    margin: 12px 0 9px;
+    color: #83817b;
+    font-size: 11px;
+    text-align: right;
+}
+
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    align-items: start;
+}
+
+.vehicle-card {
+    min-width: 0;
+    padding: 5px;
+    overflow: hidden;
+    border: 1px solid #343538;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #242527, #1a1b1d);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+    transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-2px);
+    border-color: #766344;
+}
+
+.vehicle-photo {
+    position: relative;
+    height: clamp(125px, 13vw, 174px);
+    overflow: hidden;
+    border-radius: 5px;
+    background: #303033;
+}
+
+.vehicle-photo::after {
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.28));
+    content: "";
+    pointer-events: none;
+}
+
+.vehicle-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.vehicle-status {
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    padding: 5px 7px;
+    border-radius: 3px;
+    background: #927950;
+    color: #f3eadb;
+    font-size: 9px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.vehicle-status.is-sold {
+    background: #74433e;
+}
+
+.vehicle-info {
+    padding: 8px 6px 5px;
+}
+
+.vehicle-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.vehicle-heading h2 {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    color: #e7e0d4;
+    font-size: 14px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vehicle-price {
+    flex-shrink: 0;
+    margin: 0;
+    color: #b69a6b;
+    font-size: 13px;
+}
+
+.vehicle-specs {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 11px;
+    color: #aaa69d;
+    font-size: 9px;
+}
+
+.vehicle-actions {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.vehicle-actions a {
+    display: inline-flex;
+    min-height: 30px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    border: 1px solid #766344;
+    border-radius: 4px;
+    color: #b9a17a;
+    font-size: 9px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.vehicle-actions a:hover {
+    background: #806b4b;
+    color: #fff8eb;
+}
+
+.vehicle-actions .reserve-button {
+    background: #806b4b;
+    color: #f7f0e5;
+}
+
+.vehicle-actions .reserve-button:hover {
+    background: #9a8058;
+}
+
+.empty-message {
+    padding: 44px 12px;
+    color: #aaa69d;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .inventory-tools {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .search-control {
+        grid-column: 1 / -1;
+    }
+
+    .vehicle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vehicle-photo {
+        height: clamp(150px, 24vw, 230px);
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 7px;
+    }
+
+    .inventory-page {
+        min-height: calc(100vh - 14px);
+        padding: 12px;
+        border-radius: 9px;
+    }
+
+    .inventory-tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .inventory-tools select {
+        font-size: 11px;
+    }
+
+    .price-filter-toggle {
+        font-size: 11px;
+    }
+
+    .price-filter-panel {
+        right: 0;
+        width: min(390px, calc(100vw - 38px));
+    }
+
+    .vehicle-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .vehicle-photo {
+        height: 190px;
+    }
+}
