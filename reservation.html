@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reservation</title>
+    <link rel="stylesheet" href="reservation.css">
 </head>
 <body>
     <div class="navbar">
@@ -20,6 +21,50 @@
             <p>Book a Test Drive</p>
         </nav>
     </div>
-    
+    <div class="container"> 
+        <div class="reservation-form">
+            <form action="submit_reservation.php" method="POST">
+                <div class="form-textarea" >
+                    <h2>request a private consultation</h2>
+                    <p class="form-para">Provide your details below to secure your appointment</p>
+                    <p class="form-para">An advisor will contact your within 24 hours</p>
+                </div>
+                <div class="form-container">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="car-model">Interested Vehicle</label>
+                    <select id="car-model" name="car-model" required>
+                        <option value="">-- Select a Vehicle --</option>
+                        <option value="mercedes-benz">Mercedes-Benz</option>
+                        <option value="bmw">BMW</option>
+                        <option value="bentley">Bentley</option>
+                        <option value="lamborghini">Lamborghini</option>
+                    </select>
+
+                    <label for="date">Preferred Date:</label>
+                    <input type="date" id="date" name="date" placeholder="Select preferred date" required>
+
+                    <label class="comment" >Massage / special requisitions</label> 
+                    <textarea id="comment" class="textarea" placeholder="Tell us about your requirements..."></textarea>
+                </div>
+                <div class="form-btn" >
+                    <button type="submit" value="SUBMIT CONSULTATION REQUEST"></button>
+                </div>
+            </form>
+
+        </div>
+        <div class="image">
+            <img src="" >
+        </div>
+
+    </div>
+
 </body>
 </html>
