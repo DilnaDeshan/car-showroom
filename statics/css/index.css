@@ -80,3 +80,81 @@ body {
     background-repeat: no-repeat;
     min-height: 100vh;
 }
+
+.hero {
+    background: linear-gradient(rgba(11, 12, 14, 0.5), rgba(11, 12, 14, 0.75)), 
+                url('../image/backgroundimage-car.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: calc(100vh - 80px);
+    box-sizing: border-box; /* Includes padding in the total height calculation */
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 3rem 5%; /* Slightly reduced vertical padding to fit comfortably */
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+}
+
+.hero-content p {
+    font-family: Arial, sans-serif;
+    color: #b0b5bc;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary {
+    background-color: #c5a059;
+    color: #0b0c0e;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #d4af37;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #f4f4f4;
+    border: 1px solid rgba(244, 244, 244, 0.4);
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    border-color: #c5a059;
+    color: #c5a059;
+}
