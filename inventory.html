@@ -3,51 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Inventory</title>
+    <meta name="description" content="Explore a curated selection of premium vehicles at Apex Motors.">
+    <title>Inventory | Apex Motors</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="statics/css/inventory.css">
+    <link rel="stylesheet" href="statics/css/index.css">
 </head>
 <body>
-    <!--navbar-->
 
-    <!--fiters and search bar-->
-    <div>
-        <!--search bar-->
-        <a href="#inv_searchbar" aria-label="Go to inventory search">
-            <i class="fa-solid fa-magnifying-glass fa-beat-fade" aria-hidden="true"></i>
-        </a>
-        <input type="search" placeholder="Search" id="inv_searchbar">
-        
-        <!--filters(year,type,brand,price range,sortby)-->
-        <select name="inv_year" id="inv_year" onfocus ="this.size = 4" onblur="this.size = 1" onchange="this.size = 1; this.blur();">
-            <option value="" disabled selected>Year</option>
-        </select>
+        <nav class="navbar">
+            <a href="index.html" class="logo">Apex Motors</a>
+            
+             <div class="nav-links">
+                <p><a href="index.html" >Home</a></p>
+                <p><a href="inventory.html" class="active">Inventory</a></p>
+                <p><a href="about.html">About</a></p>
+                <p><a href="#">Contact</a></p>
+            </div>
+         
+            <a href="#" class="nav-btn">Book a Test Drive</a>
+        </nav>
 
-        <select name="inv_type" id="inv_type">
-            <option value="coupe">Coupe</option>
-            <option value="sedan">Sedan</option>
-            <option value="suv">SUV</option>
-        
-        </select>
+    <main class="inventory-page">
+        <section class="inventory-tools" aria-label="Search and filter inventory">
+            <label class="search-control" for="inv_searchbar">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search" placeholder="Search..." id="inv_searchbar">
+            </label>
 
-        <select name="inv_brand" id="inv_brand">
-            <option value="mercedes-benz">Mercedes-Benz</option>
-            <option value="bmw">BMW</option>
-            <option value="bentley">Bentley</option>
-            <option value="lamborghini">Lamborghini</option>
-        </select>
+            <select name="inv_year" id="inv_year" aria-label="Filter by year">
+                <option value="">Year</option>
+            </select>
 
-        <select name="inv_price" id="inv_price">
-            <option value="low">ane whucpn </option>
-            <option value="max">pala hth </option>
+            <select name="inv_type" id="inv_type" aria-label="Filter by vehicle type">
+                <option value="">Type</option>
+                <option value="suv">SUV</option>
+                <option value="coupe">Coupe</option>
+                <option value="roadster">Roadster</option>
+            </select>
 
-        </select>
+            <select name="inv_brand" id="inv_brand" aria-label="Filter by brand">
+                <option value="">Brand</option>
+                <option value="apex">Apex</option>
+                <option value="mercedes-benz">Mercedes-Benz</option>
+                <option value="bmw">BMW</option>
+                <option value="bentley">Bentley</option>
+                <option value="lamborghini">Lamborghini</option>
+            </select>
 
-    </div>
-        
-    <!--cards-->
+            <div class="price-filter">
+                <button class="price-filter-toggle" id="price_filter_toggle" type="button"
+                    aria-label="Choose a price range" aria-expanded="false" aria-controls="price_filter_panel">
+                    <span id="price_filter_label">Price Range</span>
+                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <section class="price-filter-panel" id="price_filter_panel" aria-label="Price range options" hidden>
+                    <h2 class="price-panel-title">Price</h2>
+                    <div class="price-preset-pills" aria-label="Preset price ranges">
+                        <button class="price-pill" type="button" data-min="" data-max="25000">Below $25K</button>
+                        <button class="price-pill" type="button" data-min="25000" data-max="50000">$25K - $50K</button>
+                        <button class="price-pill" type="button" data-min="50000" data-max="150000">$50K - $150K</button>
+                        <button class="price-pill" type="button" data-min="150000" data-max="300000">$150K - $300K</button>
+                        <button class="price-pill" type="button" data-min="300000" data-max="">Over $300K</button>
+                    </div>
+                    <div class="price-inputs-row">
+                        <label class="price-input-group" for="min_price">
+                            <span>Min Price ($)</span>
+                            <input type="number" id="min_price" min="0" placeholder="Min">
+                        </label>
+                        <span class="price-separator" aria-hidden="true">-</span>
+                        <label class="price-input-group" for="max_price">
+                            <span>Max Price ($)</span>
+                            <input type="number" id="max_price" min="0" placeholder="Max">
+                        </label>
+                    </div>
+                    <p class="price-error" id="price_error" role="alert" hidden>Enter a valid range: minimum must not exceed maximum.</p>
+                    <div class="price-panel-actions">
+                        <button class="price-reset" id="price_reset" type="button">Reset</button>
+                        <button class="price-show" id="price_show" type="button">Show</button>
+                    </div>
+                </section>
+            </div>
 
+            <select name="inv_sort" id="inv_sort" aria-label="Sort vehicles">
+                <option value="">Sort By</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="year-new">Year: Newest</option>
+            </select>
+        </section>
 
-    <script type="text/javascript" src="statics/js/inventory.js"></script>
+        <p class="inventory-count" id="inventory_count" aria-live="polite">4 vehicles</p>
+
+        <section class="vehicle-grid" id="vehicle_grid" aria-label="Available vehicles">
+            <article class="vehicle-card" data-name="Aether SUV" data-year="2024" data-type="suv" data-brand="apex" data-price="189000">
+                <div class="vehicle-photo">
+                    <img src="statics/image/backgroundimage-car.jpg" alt="Aether SUV outside a modern showroom">
+                    <span class="vehicle-status">Available</span>
+                </div>
+                <div class="vehicle-info">
+                    <div class="vehicle-heading">
+                        <h2>Aether SUV</h2>
+                        <p class="vehicle-price">$189,000</p>
+                    </div>
+                    <div class="vehicle-specs"><span>2024 · V8 Bi-Turbo</span><span>All-Wheel Drive</span></div>
+                    <div class="vehicle-actions">
+                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="reserve-button" href="reservation.html">Reserve</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card" data-name="Mamba GT" data-year="2023" data-type="coupe" data-brand="bmw" data-price="245000">
+                <div class="vehicle-photo">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85" alt="Dark luxury coupe">
+                    <span class="vehicle-status">Available</span>
+                </div>
+                <div class="vehicle-info">
+                    <div class="vehicle-heading">
+                        <h2>Mamba GT</h2>
+                        <p class="vehicle-price">$245,000</p>
+                    </div>
+                    <div class="vehicle-specs"><span>2023 · V8 Bi-Turbo</span><span>All-Wheel Drive</span></div>
+                    <div class="vehicle-actions">
+                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="reserve-button" href="reservation.html">Reserve</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card" data-name="Valkyrie Roadster" data-year="2024" data-type="roadster" data-brand="lamborghini" data-price="480000">
+                <div class="vehicle-photo">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Silver performance roadster">
+                    <span class="vehicle-status is-sold">Sold</span>
+                </div>
+                <div class="vehicle-info">
+                    <div class="vehicle-heading">
+                        <h2>Valkyrie Roadster</h2>
+                        <p class="vehicle-price">$480,000</p>
+                    </div>
+                    <div class="vehicle-specs"><span>2024 · V8 Bi-Turbo</span><span>Rear-Wheel Drive</span></div>
+                    <div class="vehicle-actions">
+                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="reserve-button" href="reservation.html">Reserve</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card" data-name="Chronos GT" data-year="2022" data-type="coupe" data-brand="mercedes-benz" data-price="320000">
+                <div class="vehicle-photo">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85" alt="Luxury GT parked outside a modern home">
+                    <span class="vehicle-status">Available</span>
+                </div>
+                <div class="vehicle-info">
+                    <div class="vehicle-heading">
+                        <h2>Chronos GT</h2>
+                        <p class="vehicle-price">$320,000</p>
+                    </div>
+                    <div class="vehicle-specs"><span>2022 · V8 Bi-Turbo</span><span>Rear-Wheel Drive</span></div>
+                    <div class="vehicle-actions">
+                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="reserve-button" href="reservation.html">Reserve</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <p class="empty-message" id="empty_message" hidden>No vehicles match your search.</p>
+    </main>
+
+    <script src="statics/js/inventory.js"></script>
 </body>
 </html>
