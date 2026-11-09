@@ -54,6 +54,6 @@
 
 @media (max-width: 768px) {
   .form-container {
-    width: 90vw; /* Phone වලදී width එක 90% දක්වා වැඩි වේ */
+    width: 90vw; 
   }
 }
