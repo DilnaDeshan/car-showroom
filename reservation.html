@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation</title>
     <link rel="stylesheet" href="statics/css/reservation.css">
+    <link rel="stylesheet" href="statics/css/index.css">
 </head>
-<body>
-    
+<body class="reservation-page">
+    <nav class="navbar">
+            <a href="index.html" class="logo">Apex Motors</a>
+            
+             <div class="nav-links">
+                <p><a href="#" class="active">Home</a></p>
+                <p><a href="#">Inventory</a></p>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Contact</a></p>
+            </div>
+         
+            <a href="#" class="nav-btn">Book a Test Drive</a>
+        </nav>
     <div class="container"> 
         <div class="reservation-form">
             <form action="submit_reservation.php" method="POST" class="form-grid">
@@ -17,29 +29,46 @@
                     <p class="form-para">An advisor will contact your within 24 hours</p>
                 </div>
                 <div class="form-container">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
+                    <div class="form-column">
+                <div class="form-group">
+                    <label for="fullname">FULL NAME</label>
+                    <input type="text" id="fullname" placeholder="Enter your full name">
+                </div>
 
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="form-group">
+                    <label for="phone">PHONE NUMBER</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                </div>
 
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
+                <div class="form-group">
+                    <label for="date">PREFERRED DATE</label>
+                    <div class="date-input-wrapper">
+                    <input type="date" id="date">
+                    </div>
+                </div>
+                </div>
 
-                    <label for="car-model">Interested Vehicle</label>
-                    <select id="car-model" name="car-model" required>
-                        <option value="">-- Select a Vehicle --</option>
-                        <option value="mercedes-benz">Mercedes-Benz</option>
-                        <option value="bmw">BMW</option>
-                        <option value="bentley">Bentley</option>
-                        <option value="lamborghini">Lamborghini</option>
+                <!-- Right Column (Part 2) -->
+                <div class="form-column">
+                <div class="form-group">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicle">INTERESTED VEHICLE</label>
+                    <select id="vehicle">
+                    <option value="" disabled selected>Select a vehicle from our fleet...</option>
+                    <option value="car1">Vehicle Option 1</option>
+                    <option value="car2">Vehicle Option 2</option>
                     </select>
+                </div>
 
-                    <label for="date">Preferred Date:</label>
-                    <input type="date" id="date" name="date" placeholder="Select preferred date" required>
-
-                    <label class="comment" >Massage / special requisitions</label> 
-                    <textarea id="comment" class="textarea" placeholder="Tell us about your requirements..."></textarea>
+                <div class="form-group">
+                    <label for="message">MESSAGE / SPECIAL REQUISITIONS</label>
+                    <textarea id="message" rows="3" placeholder="Tell us about your requirements..."></textarea>
+                </div>
+                </div>
                 </div>
                 <div class="form-btn" >
                     <button type="submit">SUBMIT CONSULTATION REQUEST</button>
@@ -47,10 +76,6 @@
             </form>
 
         </div>
-        <div class="image">
-            <img src="" >
-        </div>
-
     </div>
 
 </body>
