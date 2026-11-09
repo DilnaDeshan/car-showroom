@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <!--navbar-->
+
+    <!--fiters and search bar-->
+    <div>
+        <!--search bar-->
+        <a href="#inv_searchbar" aria-label="Go to inventory search">
+            <i class="fa-solid fa-magnifying-glass fa-beat-fade" aria-hidden="true"></i>
+        </a>
+        <input type="search" placeholder="Search" id="inv_searchbar">
+        
+        <!--filters(year,type,brand,price range,sortby)-->
+        <select name="inv_year" id="inv_year" onfocus ="this.size = 4" onblur="this.size = 1" onchange="this.size = 1; this.blur();">
+            <option value="" disabled selected>Year</option>
+        </select>
+
+        <select name="inv_type" id="inv_type">
+            <option value="coupe">Coupe</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+        
+        </select>
+
+        <select name="inv_brand" id="inv_brand">
+            <option value="mercedes-benz">Mercedes-Benz</option>
+            <option value="bmw">BMW</option>
+            <option value="bentley">Bentley</option>
+            <option value="lamborghini">Lamborghini</option>
+        </select>
+
+        <select name="inv_price" id="inv_price">
+            <option value="low">ane whucpn </option>
+            <option value="max">pala hth </option>
+
+        </select>
+
+    </div>
+        
+    <!--cards-->
+
+
+    <script type="text/javascript" src="statics/js/inventory.js"></script>
+</body>
+</html>
