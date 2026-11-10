@@ -152,6 +152,7 @@ main {
   margin: 0;
 }
 
+
 .about-button-light {
   padding: 12px 18px;
   border: 1px solid #d3a66b;
@@ -213,6 +214,8 @@ main {
 
   .about-introduction {
     margin-left: 0;
+    
+}
   }
 
   .about-copy h1 {
