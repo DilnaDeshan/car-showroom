@@ -17,11 +17,12 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #16171B;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 35%;
     min-height: 100vh;
+    
 }
 
 
@@ -30,30 +31,104 @@
   grid-template-columns: 1fr 1fr; 
   gap: 20px;
   background-color: #12161a;
-  padding: 30px;
-  border-radius: 12px;
   max-width: 650px;
+  height : 100%;
   box-sizing: border-box;
-  font-family: 'Inter', -apple-system, sans-serif;
   min-height: 65vh;
+  background-color: rgba(11, 12, 14, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    background: rgba(18, 20, 24, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 600px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
 }
 
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    
+}
 
+.form-textarea {
+    grid-column: span 2; 
+    color: #e9ddc7;
+    margin-bottom: 20px;
+    
+}
+  
+.reservation-form label {
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #d9e1f2;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
 
 .reservation-form h2 {
     margin-bottom: 10px;
     color: #333;
-    text-transform: uppercase;
     background: linear-gradient(to bottom, #c5a059, #8e939d);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #e5cfb3; /* Soft champagne gold */
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.reservation-form p {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: #d9e1f2;
+    margin-bottom: 2px;
+    line-height: 1.5;
+    font-size: 1rem;
+    
 }
 
 .form-group textarea {
   min-height: 64px;
   resize: vertical;
 }
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background-color: rgba(10, 12, 16, 0.6);
+  border: 1px solid #2a2f3a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-control:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #c5a059;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+}
+
 
 .form-group input:focus,
 .form-group select:focus,
@@ -65,25 +140,28 @@
 
 .form-btn button {
   width: 100%;
-  min-height: 46px;
-  padding: 12px 18px;
-  border: 1px solid #d5b77b;
-  border-radius: 6px;
-  background: linear-gradient(110deg, #b9955e, #e0c58e 52%, #ad8952);
-  color: #171615;
+  padding: 14px 20px;
+  margin-top: 10px;
+  background: linear-gradient(to bottom, #eeb243, #d1d17e);
+  border: none;
+  border-radius: 8px;
+  color: #191d25;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-  transition: filter 160ms ease, transform 160ms ease;
+  transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
 .form-btn button:hover {
   filter: brightness(1.08);
+  opacity: 0.92;
+  
 }
 
-.form-btn button:active {
-  transform: translateY(1px);
-}
+
 
 @media (max-width: 600px) {
   .container {
