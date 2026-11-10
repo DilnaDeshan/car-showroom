@@ -169,3 +169,63 @@ vehicleGrid.querySelectorAll('.vehicle-photo img').forEach((image) => {
         image.src = 'statics/image/backgroundimage-car.jpg';
     }, { once: true });
 });
+
+
+// ── Vehicle Details Modal ──
+
+const vehicleModal = document.getElementById('vehicle_modal');
+const modalImg = document.getElementById('modal_img');
+const modalHeading = document.getElementById('modal_heading');
+const modalYear = document.getElementById('modal_year');
+const modalMake = document.getElementById('modal_make');
+const modalModel = document.getElementById('modal_model');
+const modalPrice = document.getElementById('modal_price');
+const modalEngine = document.getElementById('modal_engine');
+const modalDrive = document.getElementById('modal_drive');
+const modalStatus = document.getElementById('modal_status');
+const modalCloseBtn = document.getElementById('modal_close');
+
+function openModal(button) {
+    modalImg.src = button.dataset.img;
+    modalImg.alt = button.dataset.alt;
+    modalHeading.textContent = button.dataset.title;
+    modalYear.textContent = button.dataset.year;
+    modalMake.textContent = button.dataset.make;
+    modalModel.textContent = button.dataset.model;
+    modalPrice.textContent = button.dataset.price;
+    modalEngine.textContent = button.dataset.engine;
+    modalDrive.textContent = button.dataset.drive;
+
+    modalStatus.textContent = button.dataset.status;
+    modalStatus.classList.toggle('is-sold', button.dataset.status === 'Sold');
+
+    vehicleModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    modalCloseBtn.focus();
+}
+
+function closeModal() {
+    vehicleModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.details-button').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(btn);
+    });
+});
+
+modalCloseBtn.addEventListener('click', closeModal);
+
+vehicleModal.addEventListener('click', function (e) {
+    if (e.target === vehicleModal) {
+        closeModal();
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && vehicleModal.classList.contains('active')) {
+            closeModal();
+        }
+    });

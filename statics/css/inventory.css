@@ -387,6 +387,208 @@ body {
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
+
+/* ── Vehicle Details Modal ── */
+
+.modal-overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: modalFadeIn 0.25s ease;
+}
+
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    position: relative;
+    width: min(920px, calc(100vw - 40px));
+    max-height: calc(100vh - 60px);
+    overflow: auto;
+    border: 1px solid #3a3b3e;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #1e1f21, #151617);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    animation: modalSlideUp 0.3s ease;
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #4a4b4e;
+    border-radius: 50%;
+    background: rgba(30, 31, 33, 0.85);
+    color: #ccc8bf;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.modal-close:hover {
+    background: #806b4b;
+    color: #fff;
+}
+
+.modal-body {
+    display: flex;
+}
+
+.modal-image {
+    position: relative;
+    flex: 1 1 50%;
+    min-height: 340px;
+    background: #252628;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px 0 0 14px;
+}
+
+.modal-status {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: #927950;
+    color: #f3eadb;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.modal-status.is-sold {
+    background: #74433e;
+}
+
+.modal-details {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 36px;
+}
+
+.modal-details h2 {
+    margin: 0 0 24px;
+    color: #eee8dd;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.modal-specs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-specs li {
+    padding: 10px 0;
+    border-bottom: 1px solid #2e2f31;
+    color: #ccc8bf;
+    font-size: 15px;
+}
+
+.modal-specs li:last-child {
+    border-bottom: none;
+}
+
+.modal-specs li strong {
+    display: inline-block;
+    min-width: 110px;
+    color: #92908b;
+}
+
+.modal-reserve-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    margin-top: 28px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 8px;
+    background: #806b4b;
+    color: #fff8eb;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 160ms ease;
+}
+
+.modal-reserve-btn:hover {
+    background: #9a8058;
+}
+
+/* Modal responsive */
+@media (max-width: 700px) {
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-image {
+        min-height: 220px;
+        max-height: 260px;
+    }
+
+    .modal-image img {
+        border-radius: 14px 14px 0 0;
+    }
+
+    .modal-details {
+        padding: 24px 20px 28px;
+    }
+
+    .modal-details h2 {
+        font-size: 20px;
+    }
+}
+
+
+
+
 @media (max-width: 1000px) {
     .inventory-tools {
         grid-template-columns: repeat(3, minmax(0, 1fr));

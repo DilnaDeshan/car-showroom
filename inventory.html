@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +11,21 @@
     <link rel="stylesheet" href="statics/css/index.css">
     <link rel="stylesheet" href="statics/css/navbar.css">
 </head>
+
 <body>
 
-        <nav class="navbar">
-            <a href="index.html" class="logo">Apex Motors</a>
-            
-             <div class="nav-links">
-                <p><a href="index.html" >Home</a></p>
-                <p><a href="inventory.html" class="active">Inventory</a></p>
-                <p><a href="about.html">About</a></p>
-                <p><a href="#">Contact</a></p>
-            </div>
-         
-            <a href="reservation.html" class="nav-btn">Book a Test Drive</a>
-        </nav>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Apex Motors</a>
+
+        <div class="nav-links">
+            <p><a href="index.html">Home</a></p>
+            <p><a href="inventory.html" class="active">Inventory</a></p>
+            <p><a href="about.html">About</a></p>
+            <p><a href="#">Contact</a></p>
+        </div>
+
+        <a href="reservation.html" class="nav-btn">Book a Test Drive</a>
+    </nav>
 
     <main class="inventory-page">
         <section class="inventory-tools" aria-label="Search and filter inventory">
@@ -63,8 +65,10 @@
                     <div class="price-preset-pills" aria-label="Preset price ranges">
                         <button class="price-pill" type="button" data-min="" data-max="25000">Below $25K</button>
                         <button class="price-pill" type="button" data-min="25000" data-max="50000">$25K - $50K</button>
-                        <button class="price-pill" type="button" data-min="50000" data-max="150000">$50K - $150K</button>
-                        <button class="price-pill" type="button" data-min="150000" data-max="300000">$150K - $300K</button>
+                        <button class="price-pill" type="button" data-min="50000" data-max="150000">$50K -
+                            $150K</button>
+                        <button class="price-pill" type="button" data-min="150000" data-max="300000">$150K -
+                            $300K</button>
                         <button class="price-pill" type="button" data-min="300000" data-max="">Over $300K</button>
                     </div>
                     <div class="price-inputs-row">
@@ -78,7 +82,8 @@
                             <input type="number" id="max_price" min="0" placeholder="Max">
                         </label>
                     </div>
-                    <p class="price-error" id="price_error" role="alert" hidden>Enter a valid range: minimum must not exceed maximum.</p>
+                    <p class="price-error" id="price_error" role="alert" hidden>Enter a valid range: minimum must not
+                        exceed maximum.</p>
                     <div class="price-panel-actions">
                         <button class="price-reset" id="price_reset" type="button">Reset</button>
                         <button class="price-show" id="price_show" type="button">Show</button>
@@ -97,7 +102,8 @@
         <p class="inventory-count" id="inventory_count" aria-live="polite">4 vehicles</p>
 
         <section class="vehicle-grid" id="vehicle_grid" aria-label="Available vehicles">
-            <article class="vehicle-card" data-name="Aether SUV" data-year="2024" data-type="suv" data-brand="apex" data-price="189000">
+            <article class="vehicle-card" data-name="Aether SUV" data-year="2024" data-type="suv" data-brand="apex"
+                data-price="189000">
                 <div class="vehicle-photo">
                     <img src="statics/image/backgroundimage-car.jpg" alt="Aether SUV outside a modern showroom">
                     <span class="vehicle-status">Available</span>
@@ -109,15 +115,21 @@
                     </div>
                     <div class="vehicle-specs"><span>2024 · V8 Bi-Turbo</span><span>All-Wheel Drive</span></div>
                     <div class="vehicle-actions">
-                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="details-button" href="#" role="button"
+                            data-img="statics/image/backgroundimage-car.jpg"
+                            data-alt="Aether SUV outside a modern showroom" data-title="Aether SUV" data-year="2024"
+                            data-make="Apex" data-model="Aether SUV" data-price="$189,000" data-engine="V8 Bi-Turbo"
+                            data-drive="All-Wheel Drive" data-status="Available">View Details</a>
                         <a class="reserve-button" href="reservation.html">Reserve</a>
                     </div>
                 </div>
             </article>
 
-            <article class="vehicle-card" data-name="Mamba GT" data-year="2023" data-type="coupe" data-brand="bmw" data-price="245000">
+            <article class="vehicle-card" data-name="Mamba GT" data-year="2023" data-type="coupe" data-brand="bmw"
+                data-price="245000">
                 <div class="vehicle-photo">
-                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85" alt="Dark luxury coupe">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85"
+                        alt="Dark luxury coupe">
                     <span class="vehicle-status">Available</span>
                 </div>
                 <div class="vehicle-info">
@@ -127,15 +139,21 @@
                     </div>
                     <div class="vehicle-specs"><span>2023 · V8 Bi-Turbo</span><span>All-Wheel Drive</span></div>
                     <div class="vehicle-actions">
-                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="details-button" href="#" role="button"
+                            data-img="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85"
+                            data-alt="Dark luxury coupe" data-title="Mamba GT" data-year="2023" data-make="BMW"
+                            data-model="Mamba GT" data-price="$245,000" data-engine="V8 Bi-Turbo"
+                            data-drive="All-Wheel Drive" data-status="Available">View Details</a>
                         <a class="reserve-button" href="reservation.html">Reserve</a>
                     </div>
                 </div>
             </article>
 
-            <article class="vehicle-card" data-name="Valkyrie Roadster" data-year="2024" data-type="roadster" data-brand="lamborghini" data-price="480000">
+            <article class="vehicle-card" data-name="Valkyrie Roadster" data-year="2024" data-type="roadster"
+                data-brand="lamborghini" data-price="480000">
                 <div class="vehicle-photo">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Silver performance roadster">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
+                        alt="Silver performance roadster">
                     <span class="vehicle-status is-sold">Sold</span>
                 </div>
                 <div class="vehicle-info">
@@ -145,15 +163,21 @@
                     </div>
                     <div class="vehicle-specs"><span>2024 · V8 Bi-Turbo</span><span>Rear-Wheel Drive</span></div>
                     <div class="vehicle-actions">
-                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="details-button" href="#" role="button"
+                            data-img="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
+                            data-alt="Silver performance roadster" data-title="Valkyrie Roadster" data-year="2024"
+                            data-make="Lamborghini" data-model="Valkyrie Roadster" data-price="$480,000"
+                            data-engine="V8 Bi-Turbo" data-drive="Rear-Wheel Drive" data-status="Sold">View Details</a>
                         <a class="reserve-button" href="reservation.html">Reserve</a>
                     </div>
                 </div>
             </article>
 
-            <article class="vehicle-card" data-name="Chronos GT" data-year="2022" data-type="coupe" data-brand="mercedes-benz" data-price="320000">
+            <article class="vehicle-card" data-name="Chronos GT" data-year="2022" data-type="coupe"
+                data-brand="mercedes-benz" data-price="320000">
                 <div class="vehicle-photo">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85" alt="Luxury GT parked outside a modern home">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85"
+                        alt="Luxury GT parked outside a modern home">
                     <span class="vehicle-status">Available</span>
                 </div>
                 <div class="vehicle-info">
@@ -163,15 +187,47 @@
                     </div>
                     <div class="vehicle-specs"><span>2022 · V8 Bi-Turbo</span><span>Rear-Wheel Drive</span></div>
                     <div class="vehicle-actions">
-                        <a class="details-button" href="reservation.html">View Details</a>
+                        <a class="details-button" href="#" role="button"
+                            data-img="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85"
+                            data-alt="Luxury GT parked outside a modern home" data-title="Chronos GT" data-year="2022"
+                            data-make="Mercedes-Benz" data-model="Chronos GT" data-price="$320,000"
+                            data-engine="V8 Bi-Turbo" data-drive="Rear-Wheel Drive" data-status="Available">View
+                            Details</a>
                         <a class="reserve-button" href="reservation.html">Reserve</a>
                     </div>
                 </div>
             </article>
         </section>
         <p class="empty-message" id="empty_message" hidden>No vehicles match your search.</p>
+
     </main>
+
+    <!-- Vehicle Details Modal (outside main so overflow/z-index can't clip it) -->
+    <div class="modal-overlay" id="vehicle_modal">
+        <div class="modal-content" role="dialog" aria-labelledby="modal_heading" aria-modal="true">
+            <button class="modal-close" id="modal_close" type="button" aria-label="Close details">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal_img" src="" alt="">
+                    <span class="modal-status" id="modal_status"></span>
+                </div>
+                <div class="modal-details">
+                    <h2 id="modal_heading"></h2>
+                    <ul class="modal-specs">
+                        <li><strong>Year:</strong> <span id="modal_year"></span></li>
+                        <li><strong>Make:</strong> <span id="modal_make"></span></li>
+                        <li><strong>Model:</strong> <span id="modal_model"></span></li>
+                        <li><strong>Price:</strong> <span id="modal_price"></span></li>
+                        <li><strong>Engine:</strong> <span id="modal_engine"></span></li>
+                        <li><strong>Drive Type:</strong> <span id="modal_drive"></span></li>
+                    </ul>
+                    <a class="modal-reserve-btn" href="reservation.html">Reserve This Vehicle</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="statics/js/inventory.js"></script>
 </body>
+
 </html>
