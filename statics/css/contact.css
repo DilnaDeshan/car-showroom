@@ -1,15 +1,13 @@
-/* Contact Page Specific Styles */
 .contact-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 100px); /* Adjusting for navbar height */
+    min-height: calc(100vh - 100px); 
     padding: 40px 20px;
     box-sizing: border-box;
 }
 
 .contact-card {
-    /* Glassmorphism styling matched with reservation.css */
     background-color: rgba(18, 20, 24, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -94,7 +92,6 @@
     font-size: 0.85rem;
 }
 
-/* Responsive Design */
 @media (max-width: 900px) {
     .contact-grid {
         grid-template-columns: repeat(2, 1fr);
