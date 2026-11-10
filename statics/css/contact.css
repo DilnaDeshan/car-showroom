@@ -1,0 +1,118 @@
+/* Contact Page Specific Styles */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px); /* Adjusting for navbar height */
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.contact-card {
+    /* Glassmorphism styling matched with reservation.css */
+    background-color: rgba(18, 20, 24, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 16px;
+    padding: 60px 40px;
+    max-width: 1000px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.contact-header {
+    margin-bottom: 50px;
+}
+
+.contact-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    background: linear-gradient(to bottom, #c5a059, #8e939d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.contact-header p {
+    color: #b0b5bc;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    color: #c5a059;
+    margin-bottom: 20px;
+}
+
+.contact-item h3 {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #c5a059;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.contact-item p {
+    color: #d9e1f2;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contact-item .email-text {
+    color: #d9e1f2;
+    margin-bottom: 8px;
+}
+
+.contact-item .sub-text {
+    color: #8e939d;
+    font-size: 0.85rem;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 40px 20px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-header h2 {
+        font-size: 2rem;
+    }
+}
