@@ -158,3 +158,20 @@ body {
     border-color: #c5a059;
     color: #c5a059;
 }
+
+.btn-ternary {
+    background-color: #c5a059;
+    color: #0b0c0e;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ternary:hover {
+    background-color: #d4af37;
+}
