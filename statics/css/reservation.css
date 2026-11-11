@@ -5,9 +5,20 @@
   padding: 0;
 }
 
+
+
+body {
+  background-color: #0B0C0E;
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image: url('../image/reservation.webp');
+  background-size: cover;
+  background-position: center;
+}
+
 .container {
     display: flex;
-    flex-direction: column;
+    
 
 }
 
@@ -18,16 +29,28 @@
     justify-content: center;
     padding: 20px;
     background-color: #16171B;
-    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 35%;
+    width: 45%;
+    min-height: 100vh;
+    
+}
+
+.reservation-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 65%;
     min-height: 100vh;
     
 }
 
 
+
 .form-grid {
-  display: block;
+  display: grid;
   grid-template-columns: 1fr 1fr; 
   gap: 20px;
   background-color: #12161a;
@@ -35,23 +58,29 @@
   height : 100%;
   box-sizing: border-box;
   min-height: 65vh;
-  background-color: rgba(11, 12, 14, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); 
-  backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 40px;
-  max-width: 600px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  
 }
 
+
+
 .form-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
+    display: flex;
+    flex-direction: column;
     gap: 20px;
+    grid-column: span 2;
     
+    
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .form-textarea {
@@ -64,7 +93,7 @@
 .reservation-form label {
   display: block;
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 1.5px;
   color: #d9e1f2;
@@ -72,23 +101,29 @@
   margin-bottom: 6px;
 }
 
-.reservation-form h2 {
+.reservation-form h2 , 
+.reservation-image h2 {
     margin-bottom: 10px;
     color: #333;
     background: linear-gradient(to bottom, #c5a059, #8e939d);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 2rem;
+    font-size: 2.1rem;
     font-weight: 300;
     letter-spacing: 2px;
-    color: #e5cfb3; /* Soft champagne gold */
+    color: #e5cfb3;
     text-transform: uppercase;
     margin-bottom: 8px;
     line-height: 1.2;
 }
 
-.reservation-form p {
+.reservation-image h2 {
+    font-size: 3rem;
+}
+
+.reservation-form p , 
+.reservation-image p {
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.875rem;
     color: #d9e1f2;
@@ -96,6 +131,11 @@
     line-height: 1.5;
     font-size: 1rem;
     
+}
+
+.reservation-image p {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
 }
 
 .form-group textarea {
@@ -119,15 +159,6 @@
   transition: all 0.3s ease;
   outline: none;
 }
-
-.form-control:focus,
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #c5a059;
-  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
-}
-
 
 .form-group input:focus,
 .form-group select:focus,
