@@ -11,9 +11,10 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "New CON",
+            "group": "IDK",
             "database": "showroomdb",
             "username": "methira",
-            "askForPassword": true
+            "password": ""
         }
     ]
 }
