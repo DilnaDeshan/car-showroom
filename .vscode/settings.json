@@ -13,7 +13,8 @@
             "name": "New CON",
             "group": "IDK",
             "database": "showroomdb",
-            "username": "root"
+            "username": "methira",
+            "askForPassword": true
         }
     ]
 }
