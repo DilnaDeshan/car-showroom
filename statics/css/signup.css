@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #0b0c0e;
+    color: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.signup-layout {
+    display: grid;
+    grid-template-columns: minmax(420px, 0.9fr) minmax(0, 1.1fr);
+    min-height: calc(100vh - 76px);
+}
+
+.signup-panel {
+    align-self: center;
+    width: min(100%, 560px);
+    margin: 0 auto;
+    padding: 56px clamp(28px, 6vw, 88px);
+}
+
+.eyebrow,
+.story-kicker {
+    margin: 0 0 12px;
+    color: #c5a059;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.signup-panel h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    font-weight: 400;
+}
+
+.intro {
+    margin: 12px 0 30px;
+    color: #a9abb0;
+    line-height: 1.6;
+}
+
+.signup-form {
+    display: grid;
+    gap: 18px;
+}
+
+.name-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-field {
+    display: grid;
+    gap: 8px;
+}
+
+.form-field label {
+    color: #dedfe1;
+    font-size: 0.86rem;
+}
+
+.form-field label span {
+    color: #858991;
+}
+
+.form-field input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #34363a;
+    border-radius: 4px;
+    outline: none;
+    background: #141518;
+    color: #f4f4f4;
+    font: inherit;
+}
+
+.form-field input::placeholder {
+    color: #777a80;
+}
+
+.form-field input:focus {
+    border-color: #c5a059;
+    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.16);
+}
+
+.create-account {
+    min-height: 49px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 4px;
+    background: #c5a059;
+    color: #0b0c0e;
+    cursor: pointer;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+
+.create-account:hover {
+    background: #d4af37;
+}
+
+.login-prompt,
+.browse-prompt,
+.form-notice {
+    color: #a9abb0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.form-notice {
+    margin: 14px 0 0;
+    color: #d1ad6f;
+}
+
+.login-prompt {
+    margin: 23px 0 8px;
+}
+
+.browse-prompt {
+    margin: 0;
+}
+
+.login-prompt a,
+.browse-prompt a {
+    color: #d1ad6f;
+    text-decoration: none;
+}
+
+.login-prompt a:hover,
+.browse-prompt a:hover {
+    text-decoration: underline;
+}
+
+.signup-story {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 560px;
+    padding: clamp(32px, 7vw, 100px);
+    background:
+        linear-gradient(0deg, rgba(7, 8, 10, 0.88), rgba(7, 8, 10, 0.06) 80%),
+        linear-gradient(90deg, rgba(7, 8, 10, 0.12), rgba(7, 8, 10, 0.12)),
+        url("../image/loginbg.jpg") center / cover no-repeat;
+}
+
+.signup-story h2 {
+    max-width: 13ch;
+    margin: 0 0 20px;
+    font-family: Georgia, serif;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+}
+
+.signup-story a {
+    color: #e2c48f;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.signup-story a span {
+    margin-left: 6px;
+}
+
+.signup-story a:hover {
+    color: #fff;
+}
+
+@media (max-width: 760px) {
+    .signup-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .signup-panel {
+        padding: 48px 28px;
+    }
+
+    .signup-story {
+        min-height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .navbar .nav-links {
+        display: none;
+    }
+
+    .navbar .logo {
+        font-size: 1.1rem;
+    }
+
+    .navbar .nav-btn {
+        padding: 0.65rem 0.9rem;
+    }
+
+    .name-fields {
+        grid-template-columns: 1fr;
+    }
+}
