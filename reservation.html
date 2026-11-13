@@ -7,84 +7,95 @@
     <link rel="stylesheet" href="statics/css/reservation.css">
     <link rel="stylesheet" href="statics/css/navbar.css">
     <script src="statics/js/reservation.js" defer></script>
-
 </head>
 <body class="reservation-page">
     <nav class="navbar">
-            <a href="index.html" class="logo">Apex Motors</a>
-            
-             <div class="nav-links">
-                <p><a href="index.html">Home</a></p>
-                <p><a href="inventory.html">Inventory</a></p>
-                <p><a href="about.html">About</a></p>
-                <p><a href="contact.html">Contact</a></p>
-            </div>
-         
-            <a href="reservation.html" class="nav-btn">Book a Test Drive</a>
-        </nav>
+        <a href="index.html" class="logo">Apex Motors</a>
+        
+        <div class="nav-links">
+            <p><a href="index.html">Home</a></p>
+            <p><a href="inventory.html">Inventory</a></p>
+            <p><a href="about.html">About</a></p>
+            <p><a href="contact.html">Contact</a></p>
+        </div>
+     
+        <a href="reservation.html" class="nav-btn">Book a Test Drive</a>
+    </nav>
+
     <div class="container"> 
         <div class="reservation-form">
-            <form action="statics/php/reservation.php" method="POST" class="form-grid">
-                <div class="form-textarea" >
+            <!-- Updated action path to API/reservation.php -->
+            <form action="API/reservation.php" method="POST" class="form-grid">
+                <div class="form-textarea">
                     <h2>request a private consultation</h2>
                     <p>Provide your details below to secure your appointment</p>
-                    <p class="form-para">An advisor will contact your within 24 hours</p>
+                    <p class="form-para">An advisor will contact you within 24 hours</p>
                 </div>
+
                 <div class="form-container">
-                        <div class="form-column">
-                            <div class="form-group">
-                                <label for="fullname">FULL NAME</label>
-                                <input type="text" id="fullname" placeholder="Enter your full name" name="full_name" required>
-                            </div>
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="fullname">FULL NAME</label>
+                            <input type="text" id="fullname" placeholder="Enter your full name" name="full_name" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="phone">PHONE NUMBER</label>
-                                <input type="tel" id="phone" placeholder="Enter your phone number" name="phone_number" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="phone">PHONE NUMBER</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" name="phone_number" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="date">PREFERRED DATE</label>
-                                <div class="date-input-wrapper">
+                        <div class="form-group">
+                            <label for="date">PREFERRED DATE</label>
+                            <div class="date-input-wrapper">
                                 <input type="date" id="date" name="preferred_date" required>
                             </div>
                         </div>
-                            <div class="form-column">
-                                <div class="form-group">
-                                    <label for="email">EMAIL ADDRESS</label>
-                                    <input type="email" id="email" placeholder="Enter your email" name="email" required>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="vehicle">INTERESTED VEHICLE</label>
-                                    <select id="vehicle" name="vehicle" required>
-                                    <option value="" disabled selected>Select a vehicle from our fleet...</option>
-                                    <option value="">Brand</option>
-                                    <option value="apex">Apex</option>
-                                    <option value="mercedes-benz">Mercedes-Benz</option>
-                                    <option value="bmw">BMW</option>
-                                    <option value="bentley">Bentley</option>
-                                    <option value="lamborghini">Lamborghini</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="message">MESSAGE / SPECIAL REQUISITIONS</label>
-                                    <textarea id="message" rows="3" placeholder="Tell us about your requirements..." name="message"></textarea>
-                                </div>
+                        <!-- Added preferred_time to match preffered_time TIME NOT NULL in DB -->
+                        <div class="form-group">
+                            <label for="time">PREFERRED TIME</label>
+                            <div class="date-input-wrapper">
+                                <input type="time" id="time" name="preferred_time" required>
                             </div>
-                            <div class="form-btn" >
-                           <button type="submit">SUBMIT CONSULTATION REQUEST</button>
                         </div>
-                    </div>    
+                    </div>
+
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="email">EMAIL ADDRESS</label>
+                            <input type="email" id="email" placeholder="Enter your email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vehicle">INTERESTED VEHICLE</label>
+                            <select id="vehicle" name="vehicle" required>
+                                <option value="" disabled selected>Select a vehicle from our fleet...</option>
+                                <!-- Values match brand/model or veh_id in the vehicles table -->
+                                <option value="Apex">Apex</option>
+                                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Bentley">Bentley</option>
+                                <option value="Lamborghini">Lamborghini</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">MESSAGE / SPECIAL REQUISITIONS</label>
+                            <textarea id="message" rows="3" placeholder="Tell us about your requirements..." name="message"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-btn">
+                        <button type="submit">SUBMIT CONSULTATION REQUEST</button>
+                    </div>
                 </div>
             </form>
         </div>
 
-    <div class="reservation-image">
+        <div class="reservation-image">
             <h2>the advisory suite</h2>
-            <p>Tailored private viewing , enclosed global transport logistics, and bespoke acquisition services</p>
+            <p>Tailored private viewing, enclosed global transport logistics, and bespoke acquisition services</p>
         </div>
     </div>
-
 </body>
 </html>
