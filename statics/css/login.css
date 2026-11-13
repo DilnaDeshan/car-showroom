@@ -2,6 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
 }
+
 .login-container
 {
     display: flex;
@@ -60,4 +61,77 @@ h2
    text-align:center;
    margin-top:0;
    margin-bottom: 2rem;
+}
+
+.input {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input label {
+    display: block;
+    color: #b0b5bc; 
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.input input {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(244, 244, 244, 0.2);
+    border-radius: 4px;
+    color: #f4f4f4; 
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+
+.input input:focus {
+    border-color: #c5a059; 
+}
+
+
+.input-action {
+    margin-top: 2rem;
+}
+
+.input-action input[type="submit"] {
+    width: 100%;
+    background-color: #c5a059; 
+    color: #0b0c0e; 
+    border: none;
+    padding: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input-action input[type="submit"]:hover {
+    background-color: #d4af37; 
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #b0b5bc;
+    font-size: 0.85rem;
+}
+
+.signup-link a {
+    color: #c5a059;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
 }
