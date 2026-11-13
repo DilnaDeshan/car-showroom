@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "username", "password", "database");
+$conn = new mysqli("localhost", "root", "Dilna00/", "Showroomdb");
 
 
 

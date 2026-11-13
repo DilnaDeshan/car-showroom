@@ -10,11 +10,11 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "New CON",
-            "group": "IDK",
+            "name": "yamathe",
+            "group": "arame",
             "database": "showroomdb",
-            "username": "methira",
-            "password": ""
+            "username": "root",
+            "askForPassword": true
         }
     ]
 }
