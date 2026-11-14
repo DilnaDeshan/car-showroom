@@ -138,6 +138,11 @@ body {
     margin-bottom: 20px;
 }
 
+.reservation-image h2,
+.reservation-image p {
+    text-align: center;
+}
+
 .form-group textarea {
   min-height: 64px;
   resize: vertical;
