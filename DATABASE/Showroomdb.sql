@@ -11,7 +11,9 @@ CREATE TABLE vehicles (
     price DECIMAL(10, 2) NOT NULL ,
     color VARCHAR(30) NOT NULL,
     veh_type VARCHAR(30) NOT NULL,
-    engine VARCHAR(50) NOT NULL
+    engine VARCHAR(50) NOT NULL,
+    image VARCHAR(255) NOT NULL DEFAULT 'statics/image/backgroundimage-car.jpg',
+    status ENUM('In Stock', 'Sold') NOT NULL DEFAULT 'In Stock'
 
 );
 
@@ -21,7 +23,9 @@ CREATE TABLE customers (
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone VARCHAR(15),
-    optional_number VARCHAR(15) NULL
+    optional_number VARCHAR(15) NULL,
+    password_hash VARCHAR(255) NULL,
+    user_type ENUM('customer', 'owner') NOT NULL DEFAULT 'customer'
 );
 
 CREATE TABLE reservations (

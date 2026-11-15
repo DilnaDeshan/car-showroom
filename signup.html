@@ -26,26 +26,26 @@
             <h1 id="signup-title">Create your account</h1>
             <p class="intro">Save your details for a more personal showroom experience.</p>
 
-            <form class="signup-form" id="signup-form">
+            <form class="signup-form" id="signup-form" action="api/signup.php" method="post">
                 <div class="name-fields">
                     <div class="form-field">
                         <label for="first-name">First name</label>
-                        <input id="first-name" name="first_name" type="text" autocomplete="given-name" placeholder="First name" required>
+                        <input id="first-name" name="first_name" type="text" autocomplete="given-name" maxlength="50" placeholder="First name" required>
                     </div>
                     <div class="form-field">
                         <label for="last-name">Last name</label>
-                        <input id="last-name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name" required>
+                        <input id="last-name" name="last_name" type="text" autocomplete="family-name" maxlength="50" placeholder="Last name" required>
                     </div>
                 </div>
 
                 <div class="form-field">
                     <label for="email">Email address</label>
-                    <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                    <input id="email" name="email" type="email" autocomplete="email" maxlength="100" placeholder="you@example.com" required>
                 </div>
 
                 <div class="form-field">
                     <label for="phone">Phone number <span>(optional)</span></label>
-                    <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 77 123 4567">
+                    <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="15" placeholder="+94 77 123 4567">
                 </div>
 
                 <div class="form-field">
@@ -68,11 +68,14 @@
         </aside>
     </main>
     <script>
-        document.getElementById("signup-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            document.getElementById("signup-notice").textContent =
-                "Account creation is not set up yet. You can still browse all our cars without signing in.";
-        });
+        const signupNotice = document.getElementById("signup-notice");
+        const signupParams = new URLSearchParams(window.location.search);
+        const signupErrors = {
+            invalid: "Check your details. Passwords must be at least 8 characters.",
+            email_exists: "An account already exists for that email address.",
+            failed: "We could not create your account. Please try again."
+        };
+        signupNotice.textContent = signupErrors[signupParams.get("error")] || "";
     </script>
 </body>
 </html>

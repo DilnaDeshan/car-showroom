@@ -9,21 +9,33 @@
     <div class="loginbox">
     <h1>APEX MOTORS</h1>
     <h2>Login Portal Access </h2>
-    <form action="login.php" method="post">
+    <form action="api/login.php" method="post">
        <div class="input">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
+        <label for="email">Email address:</label>
+        <input type="email" id="email" name="email" autocomplete="email" required><br><br>
        </div>
        <div class="input">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password" autocomplete="current-password" required><br><br>
        </div>
        <div class="input-action">
         <input type="submit" value="Login">
        </div>
     <p class="signup-link">Don't have an account? <a href="signup.html">Sign up here</a></p>
     </form>
+    <p class="signup-link" id="login-notice" role="status" aria-live="polite"></p>
     </div>
 </div>    
+<script>
+    const loginNotice = document.getElementById('login-notice');
+    const loginParams = new URLSearchParams(window.location.search);
+    if (loginParams.has('registered')) {
+        loginNotice.textContent = 'Account created. You can now log in.';
+    } else if (loginParams.get('error') === 'owner_only') {
+        loginNotice.textContent = 'Please log in with an owner account to access the dashboard.';
+    } else if (loginParams.has('error')) {
+        loginNotice.textContent = 'Invalid email or password.';
+    }
+</script>
 </body>
 </html>

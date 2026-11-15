@@ -1,0 +1,541 @@
+:root {
+    --bg-main: #0d0e11;
+    --bg-sidebar: #111215;
+    --bg-card: #16181d;
+    --bg-input: #111216;
+    --border-color: #262930;
+    --gold-light: #e3c888;
+    --gold-mid: #c5a467;
+    --gold-dark: #9c7e44;
+    --text-primary: #f1f1f1;
+    --text-muted: #8e929b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    height: 100dvh;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 0;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.brand-header {
+    padding: 0 28px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: 1.5px;
+    color: var(--gold-mid);
+    display: flex;
+    flex-direction: column;
+}
+
+.close-sidebar-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 28px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.nav-item.active {
+    color: var(--gold-light);
+    border-left-color: var(--gold-mid);
+    background: linear-gradient(90deg, rgba(197, 164, 103, 0.16) 0%, rgba(197, 164, 103, 0) 100%);
+}
+
+/* Hide the nav-menu logout on desktop so only the bottom-left logout shows */
+.mobile-nav-logout {
+    display: none;
+}
+
+.sidebar-bottom {
+    padding: 0 28px;
+}
+
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: var(--gold-light);
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    margin-left: 240px;
+    padding: 32px 40px;
+    background: radial-gradient(circle at top right, #1b1a17 0%, var(--bg-main) 45%);
+    overflow-x: hidden;
+}
+
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger-btn span {
+    width: 24px;
+    height: 2px;
+    background-color: var(--gold-mid);
+    display: block;
+}
+
+.title-block .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: #b7b9be;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.title-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--gold-mid);
+}
+
+.gold-btn {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-mid) 100%);
+    color: #141414;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(197, 164, 103, 0.25);
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.gold-btn:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+}
+
+/* Mobile navbar logout hidden on desktop */
+.mobile-header-logout {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold-light);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* GRID LAYOUT */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+/* TABLE */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+td {
+    padding: 14px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: middle;
+}
+
+.car-thumb {
+    width: 64px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    display: block;
+}
+
+.model-cell {
+    font-weight: 500;
+}
+
+/* STATUS PILLS */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    min-width: 92px;
+    transition: opacity 0.2s;
+}
+
+.status-pill:hover {
+    opacity: 0.85;
+}
+
+.status-stock {
+    background-color: #214e3e;
+    color: #8ce2be;
+    border: 1px solid #2d6a54;
+}
+
+.status-stock .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e4c686;
+}
+
+.status-sold {
+    background-color: #4f2626;
+    color: #e69d9d;
+    border: 1px solid #6e3535;
+}
+
+.status-sold .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #c28e67;
+}
+
+/* ACTION BUTTONS */
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #21242b;
+    border: 1px solid var(--border-color);
+    color: #b7bbc4;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-btn:hover {
+    border-color: var(--gold-mid);
+    color: var(--gold-light);
+}
+
+.delete-btn:hover {
+    border-color: #a94442;
+    color: #f29b9b;
+}
+
+/* RIGHT FORM */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: #c7cad1;
+    margin-bottom: 7px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    padding: 10px 12px;
+    color: var(--text-primary);
+    font-size: 13px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--gold-mid);
+}
+
+.drop-zone {
+    border: 1px dashed #4a4335;
+    background-color: #191815;
+    border-radius: 8px;
+    padding: 24px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    border-color: var(--gold-mid);
+}
+
+.drop-zone p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.status-row label {
+    margin-bottom: 0;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #2b2e36;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #888;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background-color: #3a3426;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+    background-color: var(--gold-light);
+}
+
+.form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.save-btn {
+    padding: 11px 14px;
+}
+
+.cancel-btn {
+    background-color: #262930;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #31353e;
+}
+
+/* RESPONSIVE / MOBILE INTERFACE */
+@media (max-width: 1050px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 20px 16px;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+
+    /* Hide "+ Add New Vehicle" from navbar on mobile */
+    .desktop-add-btn {
+        display: none;
+    }
+
+    /* Place Logout button on navbar in mobile */
+    .mobile-header-logout {
+        display: inline-flex;
+    }
+
+    /* Slide-out Mobile Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -270px;
+        width: 260px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.75);
+    }
+
+    .close-sidebar-btn {
+        display: block;
+    }
+
+    /* Keep Inventory, Reservations, Add Vehicle, and Logout in mobile sidebar */
+    .mobile-nav-logout {
+        display: flex;
+    }
+
+    .title-block h1 {
+        font-size: 19px;
+    }
+}
