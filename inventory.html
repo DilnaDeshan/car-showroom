@@ -40,18 +40,10 @@
 
             <select name="inv_type" id="inv_type" aria-label="Filter by vehicle type">
                 <option value="">Type</option>
-                <option value="suv">SUV</option>
-                <option value="coupe">Coupe</option>
-                <option value="roadster">Roadster</option>
             </select>
 
             <select name="inv_brand" id="inv_brand" aria-label="Filter by brand">
                 <option value="">Brand</option>
-                <option value="apex">Apex</option>
-                <option value="mercedes-benz">Mercedes-Benz</option>
-                <option value="bmw">BMW</option>
-                <option value="bentley">Bentley</option>
-                <option value="lamborghini">Lamborghini</option>
             </select>
 
             <div class="price-filter">
@@ -99,106 +91,10 @@
             </select>
         </section>
 
-        <p class="inventory-count" id="inventory_count" aria-live="polite">4 vehicles</p>
+        <p class="inventory-count" id="inventory_count" aria-live="polite">Loading inventory...</p>
 
-        <section class="vehicle-grid" id="vehicle_grid" aria-label="Available vehicles">
-            <article class="vehicle-card" data-name="Aether SUV" data-year="2024" data-type="suv" data-brand="apex"
-                data-price="189000">
-                <div class="vehicle-photo">
-                    <img src="statics/image/backgroundimage-car.jpg" alt="Aether SUV outside a modern showroom">
-                    <span class="vehicle-status">Available</span>
-                </div>
-                <div class="vehicle-info">
-                    <div class="vehicle-heading">
-                        <h2>Aether SUV</h2>
-                        <p class="vehicle-price">$189,000</p>
-                    </div>
-                    <div class="vehicle-specs"><span>2024 · V8 Bi-Turbo</span><span>All-Wheel Drive</span></div>
-                    <div class="vehicle-actions">
-                        <a class="details-button" href="#" role="button"
-                            data-img="statics/image/backgroundimage-car.jpg"
-                            data-alt="Aether SUV outside a modern showroom" data-title="Aether SUV" data-year="2024"
-                            data-make="Apex" data-model="Aether SUV" data-price="$189,000" data-engine="V8 Bi-Turbo"
-                            data-drive="All-Wheel Drive" data-status="Available">View Details</a>
-                        <a class="reserve-button" href="reservation.html">Reserve</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="vehicle-card" data-name="Mamba GT" data-year="2023" data-type="coupe" data-brand="bmw"
-                data-price="245000">
-                <div class="vehicle-photo">
-                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85"
-                        alt="Dark luxury coupe">
-                    <span class="vehicle-status">Available</span>
-                </div>
-                <div class="vehicle-info">
-                    <div class="vehicle-heading">
-                        <h2>Mamba GT</h2>
-                        <p class="vehicle-price">$245,000</p>
-                    </div>
-                    <div class="vehicle-specs"><span>2023 · V8 Bi-Turbo</span><span>All-Wheel Drive</span></div>
-                    <div class="vehicle-actions">
-                        <a class="details-button" href="#" role="button"
-                            data-img="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85"
-                            data-alt="Dark luxury coupe" data-title="Mamba GT" data-year="2023" data-make="BMW"
-                            data-model="Mamba GT" data-price="$245,000" data-engine="V8 Bi-Turbo"
-                            data-drive="All-Wheel Drive" data-status="Available">View Details</a>
-                        <a class="reserve-button" href="reservation.html">Reserve</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="vehicle-card" data-name="Valkyrie Roadster" data-year="2024" data-type="roadster"
-                data-brand="lamborghini" data-price="480000">
-                <div class="vehicle-photo">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
-                        alt="Silver performance roadster">
-                    <span class="vehicle-status is-sold">Sold</span>
-                </div>
-                <div class="vehicle-info">
-                    <div class="vehicle-heading">
-                        <h2>Valkyrie Roadster</h2>
-                        <p class="vehicle-price">$480,000</p>
-                    </div>
-                    <div class="vehicle-specs"><span>2024 · V8 Bi-Turbo</span><span>Rear-Wheel Drive</span></div>
-                    <div class="vehicle-actions">
-                        <a class="details-button" href="#" role="button"
-                            data-img="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
-                            data-alt="Silver performance roadster" data-title="Valkyrie Roadster" data-year="2024"
-                            data-make="Lamborghini" data-model="Valkyrie Roadster" data-price="$480,000"
-                            data-engine="V8 Bi-Turbo" data-drive="Rear-Wheel Drive" data-status="Sold">View Details</a>
-                        <a class="reserve-button" href="reservation.html">Reserve</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="vehicle-card" data-name="Chronos GT" data-year="2022" data-type="coupe"
-                data-brand="mercedes-benz" data-price="320000">
-                <div class="vehicle-photo">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85"
-                        alt="Luxury GT parked outside a modern home">
-                    <span class="vehicle-status">Available</span>
-                </div>
-                <div class="vehicle-info">
-                    <div class="vehicle-heading">
-                        <h2>Chronos GT</h2>
-                        <p class="vehicle-price">$320,000</p>
-                    </div>
-                    <div class="vehicle-specs"><span>2022 · V8 Bi-Turbo</span><span>Rear-Wheel Drive</span></div>
-                    <div class="vehicle-actions">
-                        <a class="details-button" href="#" role="button"
-                            data-img="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85"
-                            data-alt="Luxury GT parked outside a modern home" data-title="Chronos GT" data-year="2022"
-                            data-make="Mercedes-Benz" data-model="Chronos GT" data-price="$320,000"
-                            data-engine="V8 Bi-Turbo" data-drive="Rear-Wheel Drive" data-status="Available">View
-                            Details</a>
-                        <a class="reserve-button" href="reservation.html">Reserve</a>
-                    </div>
-                </div>
-            </article>
-        </section>
-        <p class="empty-message" id="empty_message" hidden>No vehicles match your search.</p>
+        <section class="vehicle-grid" id="vehicle_grid" aria-label="Available vehicles"></section>
+        <p class="empty-message" id="empty_message" role="status">Loading vehicles...</p>
 
     </main>
 
@@ -219,7 +115,8 @@
                         <li><strong>Model:</strong> <span id="modal_model"></span></li>
                         <li><strong>Price:</strong> <span id="modal_price"></span></li>
                         <li><strong>Engine:</strong> <span id="modal_engine"></span></li>
-                        <li><strong>Drive Type:</strong> <span id="modal_drive"></span></li>
+                        <li><strong>Vehicle Type:</strong> <span id="modal_type"></span></li>
+                        <li><strong>Color:</strong> <span id="modal_color"></span></li>
                     </ul>
                     <a class="modal-reserve-btn" href="reservation.html">Reserve This Vehicle</a>
                 </div>

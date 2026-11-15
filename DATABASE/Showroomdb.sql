@@ -33,7 +33,7 @@ CREATE TABLE reservations (
     add_Message VARCHAR(255) NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(id),
     FOREIGN KEY (veh_id) REFERENCES vehicles(veh_id)
-};
+);
 
 
 

@@ -1,5 +1,5 @@
 const vehicleGrid = document.getElementById('vehicle_grid');
-const vehicleCards = Array.from(vehicleGrid.querySelectorAll('.vehicle-card'));
+let vehicleCards = [];
 const searchInput = document.getElementById('inv_searchbar');
 const yearFilter = document.getElementById('inv_year');
 const typeFilter = document.getElementById('inv_type');
@@ -15,13 +15,144 @@ const maxPriceInput = document.getElementById('max_price');
 const priceError = document.getElementById('price_error');
 const pricePills = Array.from(document.querySelectorAll('.price-pill'));
 let appliedPriceRange = null;
+let inventoryRequestInProgress = false;
 
-const currentYear = new Date().getFullYear();
-for (let year = currentYear; year >= 1900; year -= 1) {
-    const option = document.createElement('option');
-    option.value = year;
-    option.textContent = year;
-    yearFilter.appendChild(option);
+function filterValue(value) {
+    return value.trim().toLowerCase();
+}
+
+function populateFilter(select, values, placeholder) {
+    const selectedValue = select.value;
+    select.replaceChildren(new Option(placeholder, ''));
+
+    values.forEach((value) => {
+        const option = new Option(value, filterValue(String(value)));
+        select.appendChild(option);
+    });
+
+    if (values.some((value) => filterValue(String(value)) === selectedValue)) {
+        select.value = selectedValue;
+    }
+}
+
+function createTextElement(tagName, className, text) {
+    const element = document.createElement(tagName);
+    element.className = className;
+    element.textContent = text;
+    return element;
+}
+
+function createVehicleCard(vehicle) {
+    const make = String(vehicle.make);
+    const brand = String(vehicle.brand);
+    const model = String(vehicle.model);
+    const type = String(vehicle.type);
+    const color = String(vehicle.color);
+    const engine = String(vehicle.engine);
+    const price = Number(vehicle.price);
+    const card = document.createElement('article');
+    card.className = 'vehicle-card';
+    card.dataset.name = `${make} ${model}`;
+    card.dataset.year = String(vehicle.year);
+    card.dataset.type = filterValue(type);
+    card.dataset.vehicleType = type;
+    card.dataset.brand = filterValue(brand);
+    card.dataset.price = String(price);
+    card.dataset.id = String(vehicle.id);
+    card.dataset.make = make;
+    card.dataset.model = model;
+    card.dataset.engine = engine;
+    card.dataset.color = color;
+
+    const photo = document.createElement('div');
+    photo.className = 'vehicle-photo';
+    const image = document.createElement('img');
+    image.src = 'statics/image/backgroundimage-car.jpg';
+    image.alt = `${make} ${model}`;
+    image.addEventListener('error', () => {
+        image.src = 'statics/image/backgroundimage-car.jpg';
+    }, { once: true });
+    const status = createTextElement('span', 'vehicle-status', 'In inventory');
+    photo.append(image, status);
+
+    const info = document.createElement('div');
+    info.className = 'vehicle-info';
+    const heading = document.createElement('div');
+    heading.className = 'vehicle-heading';
+    heading.append(
+        createTextElement('h2', '', `${make} ${model}`),
+        createTextElement('p', 'vehicle-price', `$${price.toLocaleString('en-US')}`)
+    );
+
+    const specs = document.createElement('div');
+    specs.className = 'vehicle-specs';
+    specs.append(
+        createTextElement('span', '', `${vehicle.year} · ${engine}`),
+        createTextElement('span', '', `${type} · ${color}`)
+    );
+
+    const actions = document.createElement('div');
+    actions.className = 'vehicle-actions';
+    const details = createTextElement('a', 'details-button', 'View Details');
+    details.href = '#';
+    details.setAttribute('role', 'button');
+    const reserve = createTextElement('a', 'reserve-button', 'Reserve');
+    reserve.href = 'reservation.html';
+    actions.append(details, reserve);
+    info.append(heading, specs, actions);
+    card.append(photo, info);
+    return card;
+}
+
+function renderVehicles(vehicles) {
+    vehicleCards = vehicles.map(createVehicleCard);
+    vehicleGrid.replaceChildren(...vehicleCards);
+
+    const years = [...new Set(vehicles.map((vehicle) => Number(vehicle.year)))]
+        .sort((first, second) => second - first);
+    const types = [...new Set(vehicles.map((vehicle) => String(vehicle.type)))]
+        .sort((first, second) => first.localeCompare(second));
+    const brands = [...new Set(vehicles.map((vehicle) => String(vehicle.brand)))]
+        .sort((first, second) => first.localeCompare(second));
+    populateFilter(yearFilter, years, 'Year');
+    populateFilter(typeFilter, types, 'Type');
+    populateFilter(brandFilter, brands, 'Brand');
+    updateInventory();
+}
+
+async function loadVehicles() {
+    if (inventoryRequestInProgress) {
+        return;
+    }
+
+    inventoryRequestInProgress = true;
+    try {
+        const response = await fetch('api/vehicles.php', { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`Inventory request failed (${response.status}).`);
+        }
+
+        const result = await response.json();
+        if (!Array.isArray(result.vehicles)) {
+            throw new Error(result.error || 'The inventory response was invalid.');
+        }
+
+        renderVehicles(result.vehicles);
+        emptyMessage.textContent = 'No vehicles are currently listed.';
+        emptyMessage.hidden = vehicleCards.length > 0;
+        vehicleCount.removeAttribute('title');
+    } catch (error) {
+        console.error('Unable to load vehicle inventory:', error);
+        if (vehicleCards.length === 0) {
+            vehicleCount.textContent = 'Inventory unavailable';
+            emptyMessage.textContent = 'Unable to load inventory. Please try again later.';
+            emptyMessage.hidden = false;
+        } else {
+            vehicleCount.title = 'The latest refresh failed; showing previously loaded inventory.';
+        }
+    } finally {
+        inventoryRequestInProgress = false;
+    }
 }
 
 function matchesPriceRange(price) {
@@ -164,13 +295,6 @@ document.addEventListener('keydown', (event) => {
 [searchInput, yearFilter, typeFilter, brandFilter, sortControl]
     .forEach((control) => control.addEventListener('input', updateInventory));
 
-vehicleGrid.querySelectorAll('.vehicle-photo img').forEach((image) => {
-    image.addEventListener('error', () => {
-        image.src = 'statics/image/backgroundimage-car.jpg';
-    }, { once: true });
-});
-
-
 // ── Vehicle Details Modal ──
 
 const vehicleModal = document.getElementById('vehicle_modal');
@@ -181,23 +305,25 @@ const modalMake = document.getElementById('modal_make');
 const modalModel = document.getElementById('modal_model');
 const modalPrice = document.getElementById('modal_price');
 const modalEngine = document.getElementById('modal_engine');
-const modalDrive = document.getElementById('modal_drive');
+const modalType = document.getElementById('modal_type');
+const modalColor = document.getElementById('modal_color');
 const modalStatus = document.getElementById('modal_status');
 const modalCloseBtn = document.getElementById('modal_close');
 
-function openModal(button) {
-    modalImg.src = button.dataset.img;
-    modalImg.alt = button.dataset.alt;
-    modalHeading.textContent = button.dataset.title;
-    modalYear.textContent = button.dataset.year;
-    modalMake.textContent = button.dataset.make;
-    modalModel.textContent = button.dataset.model;
-    modalPrice.textContent = button.dataset.price;
-    modalEngine.textContent = button.dataset.engine;
-    modalDrive.textContent = button.dataset.drive;
+function openModal(card) {
+    modalImg.src = card.querySelector('.vehicle-photo img').src;
+    modalImg.alt = card.querySelector('.vehicle-photo img').alt;
+    modalHeading.textContent = `${card.dataset.make} ${card.dataset.model}`;
+    modalYear.textContent = card.dataset.year;
+    modalMake.textContent = card.dataset.make;
+    modalModel.textContent = card.dataset.model;
+    modalPrice.textContent = `$${Number(card.dataset.price).toLocaleString('en-US')}`;
+    modalEngine.textContent = card.dataset.engine;
+    modalType.textContent = card.dataset.vehicleType;
+    modalColor.textContent = card.dataset.color;
 
-    modalStatus.textContent = button.dataset.status;
-    modalStatus.classList.toggle('is-sold', button.dataset.status === 'Sold');
+    modalStatus.textContent = 'In inventory';
+    modalStatus.classList.remove('is-sold');
 
     vehicleModal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -209,11 +335,14 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.details-button').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        openModal(btn);
-    });
+vehicleGrid.addEventListener('click', (event) => {
+    const detailsButton = event.target.closest('.details-button');
+    if (!detailsButton) {
+        return;
+    }
+
+    event.preventDefault();
+    openModal(detailsButton.closest('.vehicle-card'));
 });
 
 modalCloseBtn.addEventListener('click', closeModal);
@@ -229,3 +358,6 @@ document.addEventListener('keydown', function (e) {
             closeModal();
         }
     });
+
+loadVehicles();
+window.setInterval(loadVehicles, 30000);

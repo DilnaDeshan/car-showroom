@@ -15,14 +15,14 @@ body {
 }
 
 .inventory-page {
-    width: min(100%, 1440px);
+    width: 100%;
+    width: min(100%, 1920px);
     min-height: calc(100vh - 28px);
     margin: 0 auto;
     padding: 16px 3.2% 28px;
     overflow: visible;
     background: linear-gradient(145deg, #17181a, #111214 70%);
     border: 1px solid #292a2c;
-    border-radius: 12px;
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
 }
 
