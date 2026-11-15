@@ -14,6 +14,7 @@ const minPriceInput = document.getElementById('min_price');
 const maxPriceInput = document.getElementById('max_price');
 const priceError = document.getElementById('price_error');
 const pricePills = Array.from(document.querySelectorAll('.price-pill'));
+const defaultVehicleImage = 'statics/image/backgroundimage-car.jpg';
 let appliedPriceRange = null;
 let inventoryRequestInProgress = false;
 
@@ -63,16 +64,22 @@ function createVehicleCard(vehicle) {
     card.dataset.model = model;
     card.dataset.engine = engine;
     card.dataset.color = color;
+    card.dataset.status = String(vehicle.status || 'In Stock');
 
     const photo = document.createElement('div');
     photo.className = 'vehicle-photo';
     const image = document.createElement('img');
-    image.src = 'statics/image/backgroundimage-car.jpg';
+    const imagePath = String(vehicle.image || '').trim();
+    image.src = imagePath || defaultVehicleImage;
     image.alt = `${make} ${model}`;
     image.addEventListener('error', () => {
-        image.src = 'statics/image/backgroundimage-car.jpg';
+        image.src = defaultVehicleImage;
     }, { once: true });
-    const status = createTextElement('span', 'vehicle-status', 'In inventory');
+    const isSold = card.dataset.status === 'Sold';
+    const status = createTextElement('span', 'vehicle-status', card.dataset.status);
+    if (isSold) {
+        status.classList.add('is-sold');
+    }
     photo.append(image, status);
 
     const info = document.createElement('div');
@@ -322,8 +329,11 @@ function openModal(card) {
     modalType.textContent = card.dataset.vehicleType;
     modalColor.textContent = card.dataset.color;
 
-    modalStatus.textContent = 'In inventory';
+    modalStatus.textContent = card.dataset.status;
     modalStatus.classList.remove('is-sold');
+    if (card.dataset.status === 'Sold') {
+        modalStatus.classList.add('is-sold');
+    }
 
     vehicleModal.classList.add('active');
     document.body.style.overflow = 'hidden';
