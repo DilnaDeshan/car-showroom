@@ -1,52 +1,59 @@
 <?php
-session_start();
 header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 
-require_once dirname(__DIR__) . "/CONFIG/db_config.php";
+require_once dirname(__DIR__) . '/CONFIG/db_config.php';
+require_once dirname(__DIR__) . '/CONFIG/auth.php';
 
-// Verify owner session
-$userRole = $_SESSION['user_type'] ?? $_SESSION['role'] ?? null;
-if ($userRole !== 'owner') {
-    // Uncomment the lines below once login.php sets $_SESSION['user_type'] = 'owner'
-    // http_response_code(401);
-    // echo json_encode(['success' => false, 'error' => 'Unauthorized', 'redirect' => 'login.html']);
-    // exit();
+function respond(array $data, int $status = 200): void
+{
+    http_response_code($status);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
+    exit;
 }
 
-// Handle POST requests (Delete reservation)
+$user = getCurrentUser($conn);
+if (!$user || $user['user_type'] !== 'owner') {
+    respond(['success' => false, 'error' => 'Owner access is required.'], 401);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
-    $deleteId = isset($input['delete_id']) ? (int) $input['delete_id'] : 0;
-
-    if ($deleteId <= 0) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'error' => 'Invalid reservation ID.']);
-        exit();
+    if (!is_array($input)) {
+        respond(['success' => false, 'error' => 'Invalid reservation request.'], 400);
     }
 
-    $stmt = $conn->prepare("DELETE FROM reservations WHERE reservation_id = ?");
-    if (!$stmt) {
-        http_response_code(500);
-        echo json_encode(['success' => false, 'error' => $conn->error]);
-        exit();
+    $deleteId = filter_var($input['delete_id'] ?? null, FILTER_VALIDATE_INT);
+
+    if (($input['action'] ?? '') !== 'delete' || $deleteId === false || $deleteId < 1) {
+        respond(['success' => false, 'error' => 'Invalid reservation request.'], 400);
     }
 
-    $stmt->bind_param("i", $deleteId);
-    $executed = $stmt->execute();
-    $stmt->close();
+    try {
+        $stmt = $conn->prepare('DELETE FROM reservations WHERE reservation_id = ?');
+        $stmt->bind_param('i', $deleteId);
+        $stmt->execute();
+        $deleted = $stmt->affected_rows;
+        $stmt->close();
 
-    if (!$executed) {
-        http_response_code(500);
-        echo json_encode(['success' => false, 'error' => 'Database delete failed.']);
-        exit();
+        if ($deleted === 0) {
+            respond(['success' => false, 'error' => 'Reservation not found.'], 404);
+        }
+        respond(['success' => true]);
+    } catch (mysqli_sql_exception $error) {
+        error_log('Reservation delete failed: ' . $error->getMessage());
+        respond(['success' => false, 'error' => 'The reservation could not be removed.'], 500);
     }
-
-    echo json_encode(['success' => true]);
-    exit();
 }
 
-// Handle GET requests (Fetch all reservations)
-$sql = "SELECT 
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    header('Allow: GET, POST');
+    respond(['success' => false, 'error' => 'Method not allowed.'], 405);
+}
+
+try {
+    $result = $conn->query(
+        'SELECT
             r.reservation_id,
             r.Preffered_date,
             r.preffered_time,
@@ -56,30 +63,30 @@ $sql = "SELECT
             c.email,
             c.phone,
             v.make,
-            v.brand,
             v.model,
             v.year,
             v.image
-        FROM reservations r
-        INNER JOIN customers c ON r.customer_id = c.id
-        INNER JOIN vehicles v ON r.veh_id = v.veh_id
-        ORDER BY r.Preffered_date DESC, r.preffered_time DESC";
+         FROM reservations r
+         INNER JOIN customers c ON r.customer_id = c.id
+         INNER JOIN vehicles v ON r.veh_id = v.veh_id
+         ORDER BY r.Preffered_date ASC, r.preffered_time ASC'
+    );
 
-$result = $conn->query($sql);
+    $reservations = [];
+    while ($row = $result->fetch_assoc()) {
+        $row['reservation_id'] = (int) $row['reservation_id'];
+        $row['year'] = (int) $row['year'];
+        $image = trim((string) ($row['image'] ?? ''));
+        if (preg_match('#^api/uploads/#i', $image)) {
+            $image = 'API/' . substr($image, 4);
+        }
+        $row['image'] = $image !== '' ? $image : 'statics/image/backgroundimage-car.jpg';
+        $reservations[] = $row;
+    }
+    $result->free();
 
-if (!$result) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'error' => $conn->error]);
-    exit();
+    respond(['success' => true, 'reservations' => $reservations]);
+} catch (mysqli_sql_exception $error) {
+    error_log('Reservation fetch failed: ' . $error->getMessage());
+    respond(['success' => false, 'error' => 'Reservations could not be loaded.'], 500);
 }
-
-$reservations = [];
-while ($row = $result->fetch_assoc()) {
-    $reservations[] = $row;
-}
-$result->free();
-
-echo json_encode([
-    'success' => true,
-    'reservations' => $reservations
-]);
