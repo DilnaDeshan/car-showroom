@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations | Apex Motors Owner Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="statics/css/dbInventory.css">
+    <link rel="stylesheet" href="statics/css/reservations.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div>
+            <div class="brand-title">Apex<br>Motors</div>
+            <nav class="nav-menu">
+                <a href="dbInventory.html" class="nav-item">
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Inventory</span>
+                </a>
+                <a href="dbreservation.html" class="nav-item active">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Reservations</span>
+                </a>
+                <a href="dbInventory.html#add-vehicle" class="nav-item">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>Add Vehicle</span>
+                </a>
+            </nav>
+        </div>
+
+        <a href="index.html" class="logout-link">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Back to Showroom</span>
+        </a>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <p class="subtitle">Apex Showroom</p>
+                <h1 class="page-title">Test Drive Reservations</h1>
+            </div>
+            <div class="badge-count" id="bookingCount">0 Bookings</div>
+        </div>
+
+        <div class="alert-banner hidden" id="alertBanner"></div>
+
+        <section class="card-panel">
+            <h2>Customer Bookings</h2>
+
+            <div class="empty-state hidden" id="emptyState">
+                No test-drive reservations have been submitted yet.
+            </div>
+
+            <div class="table-wrapper hidden" id="tableWrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vehicle</th>
+                            <th>Customer</th>
+                            <th>Contact</th>
+                            <th>Preferred Date &amp; Time</th>
+                            <th>Customer Message</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservationsBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="statics/js/reservations.js"></script>
+</body>
+</html>

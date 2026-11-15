@@ -6,7 +6,7 @@ require_once __DIR__ . "/../config/db_config.php";
 
 try {
     $result = $conn->query(
-        "SELECT veh_id, make, brand, model, year, price, color, veh_type, engine
+        "SELECT veh_id, make, brand, model, year, price, color, veh_type, engine, image, status
          FROM vehicles
          ORDER BY veh_id"
     );
@@ -22,7 +22,9 @@ try {
             "price" => (float) $row["price"],
             "color" => $row["color"],
             "type" => $row["veh_type"],
-            "engine" => $row["engine"]
+            "engine" => $row["engine"],
+            "image" => $row["image"],
+            "status" => $row["status"]
         ];
     }
 
