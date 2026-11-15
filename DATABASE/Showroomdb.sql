@@ -1,4 +1,4 @@
-DROP DATABASE showroomdb IF EXISTS;
+DROP DATABASE showroomdb;
 CREATE DATABASE showroomdb;
 
 USE showroomdb;
