@@ -1,4 +1,4 @@
-const API_URL = 'api/dbreservations.php';
+const API_URL = 'API/dbreservations.php';
 const FALLBACK_IMG = 'statics/image/backgroundimage-car.jpg';
 
 const bookingCountEl = document.getElementById('bookingCount');

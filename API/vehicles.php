@@ -2,28 +2,7 @@
 header("Content-Type: application/json; charset=utf-8");
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 
-require_once __DIR__ . "/../config/db_config.php";
-
-function normalizeVehicleImage($image): string
-{
-    $value = trim((string) ($image ?? ''));
-    if ($value === '') {
-        return 'statics/image/backgroundimage-car.jpg';
-    }
-
-    if (preg_match('#^(?:https?:)?//#i', $value) || preg_match('#^(?:data:|blob:)#i', $value)) {
-        return $value;
-    }
-
-    $value = preg_replace('#^\./+#', '', $value);
-    $value = preg_replace('#^[\\/]+#', '', $value);
-
-    if (preg_match('#^(?:api/|statics/|images?/|uploads/)#i', $value)) {
-        return $value;
-    }
-
-    return 'statics/image/backgroundimage-car.jpg';
-}
+require_once __DIR__ . "/../CONFIG/db_config.php";
 
 try {
     $result = $conn->query(
@@ -44,11 +23,7 @@ try {
             "color" => $row["color"],
             "type" => $row["veh_type"],
             "engine" => $row["engine"],
-<<<<<<< HEAD
             "image" => $row["image"],
-=======
-            "image" => normalizeVehicleImage($row["image"]),
->>>>>>> c13521a4fb6aab5f5b9ff7da82495f96b55c6197
             "status" => $row["status"]
         ];
     }

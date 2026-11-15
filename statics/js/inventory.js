@@ -134,7 +134,7 @@ async function loadVehicles() {
 
     inventoryRequestInProgress = true;
     try {
-        const response = await fetch('api/vehicles.php', { cache: 'no-store' });
+        const response = await fetch('API/vehicles.php', { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(`Inventory request failed (${response.status}).`);
         }

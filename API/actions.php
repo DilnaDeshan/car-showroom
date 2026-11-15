@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_vehicle'])) {
         if (!move_uploaded_file($upload['tmp_name'], $uploadDirectory . '/' . $fileName)) {
             redirectToInventory('upload_failed');
         }
-        $imagePath = 'api/uploads/' . $fileName;
+        $imagePath = 'API/uploads/' . $fileName;
     }
 
     $status = isset($_POST['status']) ? 'In Stock' : 'Sold';

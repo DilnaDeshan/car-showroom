@@ -3,7 +3,7 @@ const logoutLink = document.getElementById('logoutLink');
 const loginLink = document.getElementById('loginLink');
 const signupLink = document.getElementById('signupLink');
 
-fetch('api/session.php', { credentials: 'same-origin' })
+fetch('API/session.php', { credentials: 'same-origin' })
     .then((response) => {
         if (!response.ok) {
             throw new Error('Unable to check the current session.');

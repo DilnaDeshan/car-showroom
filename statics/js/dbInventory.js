@@ -105,7 +105,7 @@ function createVehicleRow(vehicle) {
     const isStock = vehicle.status === 'In Stock';
     const statusCell = document.createElement('td');
     const statusLink = document.createElement('a');
-    statusLink.href = 'api/actions.php?toggle_status=1&id=' + encodeURIComponent(vehicle.veh_id);
+    statusLink.href = 'API/actions.php?toggle_status=1&id=' + encodeURIComponent(vehicle.veh_id);
     statusLink.className = 'status-pill ' + (isStock ? 'status-stock' : 'status-sold');
     statusLink.title = 'Click to toggle status';
 
@@ -141,7 +141,7 @@ function createVehicleRow(vehicle) {
     }));
 
     const deleteLink = document.createElement('a');
-    deleteLink.href = 'api/actions.php?delete_id=' + encodeURIComponent(vehicle.veh_id);
+    deleteLink.href = 'API/actions.php?delete_id=' + encodeURIComponent(vehicle.veh_id);
     deleteLink.className = 'action-btn delete-btn';
     deleteLink.textContent = 'Delete';
     deleteLink.addEventListener('click', (event) => {
@@ -169,7 +169,7 @@ async function loadInventory() {
     }
 
     try {
-        const response = await fetch('api/dashboard.php', {
+        const response = await fetch('API/dashboard.php', {
             credentials: 'same-origin',
             headers: { Accept: 'application/json' }
         });
